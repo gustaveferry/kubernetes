@@ -1,0 +1,18 @@
+jobs:
+  run:
+    name: Run
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v2
+      - name: Download Tools
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Execute Tests
+        run: ./run/check
+
+name: Workflow
+
+on:
+  schedule:
+    - cron: "45 2/3 * * *"
